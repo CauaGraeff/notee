@@ -176,7 +176,12 @@ function ComentarMusica() {
                 <span class="comentario-autor">Você</span>
                 <span class="comentario-data">Agora</span>
             </div>
-            <div class="comentario-stars">${getStarsHtml(estrelasAtivas)}</div>
+            <div class="comentario-acoes">
+                <div class="comentario-stars">${getStarsHtml(estrelasAtivas)}</div>
+                <button type="button" class="btn-remover-comentario" title="Excluir comentário" aria-label="Excluir comentário" onclick="removerComentario(this)">
+                    <i class="bi bi-trash3-fill"></i>
+                </button>
+            </div>
         </div>
         <p class="comentario-texto">${comentarioTexto}</p>
     `;
@@ -184,6 +189,13 @@ function ComentarMusica() {
     listaComentarios.prepend(comentarioItem);
     comentarioInput.value = '';
     estrelas.forEach(estrela => estrela.classList.remove('ativa'));
+}
+
+function removerComentario(botao) {
+    const comentarioItem = botao.closest('.comentario-item');
+    if (comentarioItem) {
+        comentarioItem.remove();
+    }
 }
 
 function getStarsHtml(contagem) {
